@@ -1,0 +1,212 @@
+    :root {
+        /* --high: #ef5a69; */
+        --light: #B1B1B1;
+        --dark1: #0A0708;
+        --dark2: #444444;
+        /* --high2: #6200ff; */
+    }
+
+    /* css for slide-bar */
+    *,
+    *:before,
+    *:after {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+
+    }
+
+    body {
+        background: linear-gradient(120deg, var(--dark2), var(--dark1));
+    }
+
+    .nav_bar {
+        position: absolute;
+        width: 200px;
+        height: 100vh;
+        background-color: var(--light);
+        left: -200px;
+        z-index: 999;
+        /* margin-top: -70px; */
+    }
+
+    .nav_bar.active {
+        left: 0;
+    }
+
+    .nav_bar ul li {
+        list-style: none;
+        padding: 20px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 900;
+        color: var(--dark1);
+
+    }
+
+    .nav_bar ul li a {
+        text-decoration: none;
+        color: var(--dark1);
+
+    }
+
+    .nav_bar li:hover {
+        font-size: 21px;
+        /* color: #a8dadc; */
+        background-color: var(--high2);
+    }
+
+
+    .nav_bar .toogle_but {
+        position: absolute;
+        left: 215px;
+        top: 20px;
+    }
+
+    .toogle_but span {
+        width: 35px;
+        height: 3px;
+        background-color: var(--light);
+        display: block;
+        margin-top: 4px;
+    }
+
+    /* css for slide bar ends */
+
+    /* css for animation */
+
+    /* body {
+    height: 100vh;
+} */
+
+    .container {
+        height: 350px;
+        width: 350px;
+        background: transparent;
+        position: absolute;
+        transform: translate(-50%, -85%);
+        top: 50%;
+        left: 50%;
+        border-radius: 8px;
+        /* box-shadow: 20px 20px 40px rgba(60, 60, 150, 0.25); */
+        display: grid;
+        place-items: center;
+    }
+
+    .circular-progress {
+        position: relative;
+        height: 250px;
+        width: 250px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+    }
+
+    .circular-progress:before {
+        content: "";
+        position: absolute;
+        height: 84%;
+        width: 84%;
+        background-color: #ffffff;
+        border-radius: 50%;
+    }
+
+    .value-container {
+        position: relative;
+        font-family: "Poppins", sans-serif;
+        font-size: 50px;
+        color: #231c3d;
+    }
+
+    /* css for animation  ends*/
+
+    /* css for buttons */
+
+
+
+    .but_cont {
+        /* display: ;
+    align-items: center;
+    justify-content: center; */
+        text-align: center;
+        margin: 8px;
+        /* transform: translate(0%, 700%); */
+        position: absolute;
+        margin-top: 60vh;
+
+    }
+
+    @media all and (max-width : 384px) {
+        .but_cont {
+            /* display: ;
+        align-items: center;
+        justify-content: center; */
+            text-align: center;
+            margin: 8px;
+            /* transform: translate(0%, 450%); */
+            position: absolute;
+            margin-top: 60vh;
+        }
+    }
+
+    /* @media all and (max-height : 780px) {
+    .but_cont {
+        margin-top: 27rem;
+    }
+} */
+
+
+
+
+    button {
+
+
+        min-width: 4rem;
+        height: 5vh;
+        margin-left: 2px;
+        margin-right: 2px;
+        border-radius: 20px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding: 1vh;
+        text-align: center;
+        vertical-align: middle;
+        border-color: var(--dark1);
+    }
+
+    .addc:active {
+
+        background-color: var(--light);
+        /* color: white; */
+        /* box-shadow: 0 5px var(--dark1); */
+    }
+
+
+    .add {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .addc {
+        margin-top: 85vh;
+        width: 25vh;
+        height: 7vh;
+        font-weight: 700;
+        font-size: 2rem;
+    }
+
+    .value-container input {
+        border: transparent;
+        background-color: #e2e1e1;
+        border-radius: 20vh;
+        font-size: 6vh;
+        width: 20vh;
+        height: 20vh;
+        text-align: center;
+    }
+
+    .value-container input:focus {
+        background-color: var(--light);
+        border-color: var(--light);
+    }
