@@ -7,14 +7,14 @@ require('dotenv').config();
 
 
 //Router paths
-const {signup} = require('./signup');
-const {verify} = require('./verify'); 
-const {login}= require('./login');
-const {logout}= require('./logout');
-const {authenticateToken}= require('./jwt');
-const {budget}= require('./budget_set');
-const {transaction}= require('./transaction');
-
+const {signup} = require('./routes/signup');
+const {verify} = require('./routes/verify_otp'); 
+const {login}= require('./routes/login');
+const {logout}= require('./routes/logout'); 
+const {authenticateToken}= require('./middleware/jwt');
+const {budget}= require('./routes/budget_set');
+const {transaction}= require('./routes/transaction');
+const {session}= require('./routes/session');
 
 app.use(express.json());
 app.use(urlencoded({extended:true}));
@@ -25,6 +25,7 @@ app.use('/login',login);
 app.use('/budget',budget);
 app.use('/transaction',transaction)
 app.use('/logout',logout);
+app.use('/session',session)
 
 
 

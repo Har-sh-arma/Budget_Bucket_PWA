@@ -1,8 +1,9 @@
 // seting up the budget, and category wise 
 const express= require('express');
 const budget= express.Router();
-const {connectDB}= require('./database');
-const { authenticateToken } = require('./jwt');
+const {connectDB}= require('../SQL/database');
+const { authenticateToken } = require('../middleware/jwt');
+
 
 
 budget.get('/:year/:month',authenticateToken,(req,res)=>{
@@ -64,15 +65,20 @@ budget.put('/',authenticateToken,(req,res)=>{
         if(result){
             const temp= result[0].user_id;
             let user_id= temp;  
-            console.log(month); 
+            console.log(budget); 
             var sql = `UPDATE budget_monthly SET budget='${budget}',food_budget='${food_budget}',utilities_budget='${utilities_budget}'
                 ,transport_budget='${transport_budget}',entertainment_budget='${entertainment_budget}', misc_budget='${misc_budget}',if_session='${if_session}'
                  WHERE user_id='${user_id}' and month='${month}'`
             
                  connectDB.query(sql,(err,result)=>{  
                     if(err) throw err;
-                    console.log(`budget has been updated for user_id: ${user_id}`);   
-                    res.send(`budget has been updated for user_id: ${user_id}`); 
+                    console.log(result);
+                    if(result.affectedRows==0){
+                        res.send(" invalid request");
+                    }else{
+                        console.log(`budget has been updated for user_id: ${user_id}`);   
+                        res.send(`budget has been updated for user_id: ${user_id}`); 
+                    }
                     }) ;   
         }    
     }) 
@@ -102,7 +108,6 @@ budget.put('/spendings',authenticateToken,(req,res)=>{
     }) 
 
 })
-   
 
 module.exports= {budget};  
     

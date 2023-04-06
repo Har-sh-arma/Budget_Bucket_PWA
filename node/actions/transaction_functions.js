@@ -1,5 +1,4 @@
-const {connectDB}= require('./database');
-const express= require('express')
+const {connectDB}= require('../SQL/database');
 
 function get_user_id(email){
     return new Promise((resolve,reject)=>{
@@ -22,7 +21,7 @@ function get_budget_id(user_id,month,year){
 }
 
 function check_session_id_already_exists(session_id){
-    return new Promise((resolve,reject)=>{
+    return new Promise((resolve,reject)=>{ 
         var sql = `SELECT * from session_budget WHERE session_id='${session_id}'`;
         connectDB.query(sql,(err,result)=>{
             if(err){console.log(err); reject(err) };
@@ -146,6 +145,20 @@ async function insert_transactions(email,month,year,transactions,res){
     
     
 }
-module.exports= {generate_session_query,generate_trans_query,insert_session_records,
-                 insert_transaction_records,get_user_id,get_budget_id,check_session_id_already_exists,
-                 get_session_ids_with_name_array,insert_transactions} 
+
+
+async function async_get_transactions_for_month(year,month,email,res){
+    try{
+        let user_id = await get_user_id(email);
+        var sql = `select date,time,amount,category from transactions where MONTH(date)='${month}' and YEAR(date)='${year}' and user_id='${user_id}' ORDER BY date,time`;
+        connectDB.query(sql,(err,result)=>{
+            if(err) {console.log(err);}
+            res.send(result);
+        });
+    }catch(err){
+        console.log(err);
+    }
+        
+}
+module.exports= {insert_transactions, async_get_transactions_for_month,get_user_id} 
+  
