@@ -9,7 +9,7 @@ logout.put('/',(req,res)=>{
     const {email} = req.body;
     var sql = `UPDATE users SET User_loggedin_device=null WHERE email="${email}"`;
     connectDB.query(sql,(err,result)=>{
-        if(err) throw err;
+        if(err) return res.status(500).send("logout error ");
         if(result){
             // var {token}= req.cookies;
             //  token = null;

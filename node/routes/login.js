@@ -6,14 +6,7 @@ const { login_user } = require('../actions/login_functions');
 
 
 
-
-login.get('/',authenticateToken,(req,res)=>{
-   res.send(`welcome: ${req.user}`);
-})
-
-
-
-login.post('/verify_login',(req,res)=>{
+login.post('/',(req,res)=>{
     login_user(req,res);
 })
 

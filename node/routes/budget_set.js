@@ -12,7 +12,7 @@ budget.get('/:year/:month',authenticateToken,(req,res)=>{
     
     var sql = `SELECT * FROM users WHERE email="${email}"`;
     connectDB.query(sql,(err,result)=>{
-        if(err) throw err;
+        if(err) return res.status(500).send("server error(budget)");
         if(result){
             const temp= result[0].user_id;
             let user_id= temp;  
@@ -20,7 +20,7 @@ budget.get('/:year/:month',authenticateToken,(req,res)=>{
             var sql = `SELECT * from budget_monthly WHERE user_id='${user_id}' AND MONTH(month) = '${month}' AND YEAR(month) = '${year}'`;
             
                  connectDB.query(sql,(err,result)=>{  
-                    if(err) throw err;
+                    if(err) return res.status(500).send("server error(budget)");
                     if(result[0]==undefined)
                         res.send("no such records found");
                     console.log(`budget for the month:${month} and year:${year} is : ${result[0]}`);   
@@ -36,7 +36,7 @@ budget.post('/',authenticateToken,(req,res)=>{
     const {month,budget,food_budget,utilities_budget,transport_budget,entertainment_budget,misc_budget,if_session}= req.body;
     var sql = `SELECT * FROM users WHERE email="${email}"`;
     connectDB.query(sql,(err,result)=>{
-        if(err) throw err;
+        if(err) return res.status(500).send("server error(budget)");
         if(result){
             const temp= result[0].user_id;
             let user_id= temp;  
@@ -47,7 +47,7 @@ budget.post('/',authenticateToken,(req,res)=>{
                  '${transport_budget}', '${entertainment_budget}', '${misc_budget}', '${if_session}')`;
             
                  connectDB.query(sql,(err,result)=>{  
-                    if(err) throw err;
+                    if(err) return res.status(500).send("server error(budget)");
                     console.log(`budget has been set for user_id: ${user_id}`);   
                     res.send(`budget has been set for user_id: ${user_id}`); 
                     }) ; 
@@ -61,7 +61,7 @@ budget.put('/',authenticateToken,(req,res)=>{
     const {month,budget,food_budget,utilities_budget,transport_budget,entertainment_budget,misc_budget,if_session}= req.body;
     var sql = `SELECT * FROM users WHERE email="${email}"`;
     connectDB.query(sql,(err,result)=>{
-        if(err) throw err;
+        if(err) return res.status(500).send("server error(budget)");
         if(result){
             const temp= result[0].user_id;
             let user_id= temp;  
@@ -71,7 +71,7 @@ budget.put('/',authenticateToken,(req,res)=>{
                  WHERE user_id='${user_id}' and month='${month}'`
             
                  connectDB.query(sql,(err,result)=>{  
-                    if(err) throw err;
+                    if(err) return res.status(500).send("server error(budget)");
                     console.log(result);
                     if(result.affectedRows==0){
                         res.send(" invalid request");
@@ -90,7 +90,7 @@ budget.put('/spendings',authenticateToken,(req,res)=>{
     const {month,spent,food_spent,utilities_spent,transport_spent,entertainment_spent,misc_spent}= req.body;
     var sql = `SELECT * FROM users WHERE email="${email}"`;
     connectDB.query(sql,(err,result)=>{
-        if(err) throw err;
+        if(err) return res.status(500).send("server error(budget)");
         if(result){
             const temp= result[0].user_id;
             let user_id= temp;  
@@ -100,7 +100,7 @@ budget.put('/spendings',authenticateToken,(req,res)=>{
                  WHERE user_id='${user_id}' and month='${month}'`
             
                  connectDB.query(sql,(err,result)=>{  
-                    if(err) throw err;
+                    if(err) return res.status(500).send("server error(budget)");
                     console.log(`budget spendings has been updated for user_id: ${user_id}`);   
                     res.send(`budget spendings has been updated for user_id: ${user_id}`); 
                     }) ;   

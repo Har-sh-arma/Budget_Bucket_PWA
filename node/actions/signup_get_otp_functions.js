@@ -8,7 +8,7 @@ function user_exists(email){
     return new Promise((resolve,reject)=>{
         var sql = `SELECT * FROM user_otp WHERE email="${email}"`;
         connectDB.query(sql,(err, result)=>{
-            if(err){console.log(err);reject(err);}
+            if(err){console.log(err);throw err;}
             if(result[0]==undefined)
                 resolve(false);
             else 
@@ -45,6 +45,7 @@ async function send_otp_to_user(req,res){
             }
     }catch(err){
             console.log(err);
+            res.status(500).send("server side otp err has occured");
     }
 }
 

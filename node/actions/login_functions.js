@@ -7,7 +7,7 @@ function user_exists(email){
     return new Promise((resolve,reject)=>{
         var sql = `SELECT * FROM users WHERE email="${email}"`;
         connectDB.query(sql,(err, result)=>{
-            if(err){console.log(err);reject(err);}
+            if(err){console.log(err);throw err;}
             if(result[0]==undefined)
                 resolve(false);
             else 
@@ -51,6 +51,8 @@ async function login_user(req,res){
         }
 
     }catch(err){
+        console.log(err);
+        res.status(500).send("login error has occured");
 
     }
 }

@@ -10,9 +10,9 @@ const generateOTP = ()=>{
     return otp_string;
 }
 
-function insertDB_user_otp_details(email,otp){
+function insertDB_user_otp_details(email,otp_hash){
     return new Promise((resolve,reject)=>{
-        var sql = `INSERT INTO user_otp(email,otp) VALUES ('${email}', '${otp}')`;
+        var sql = `INSERT INTO user_otp(email,otp_hash) VALUES ('${email}', '${otp_hash}')`;
         connectDB.query(sql, function (err, result) {
         if (err){console.log(err);reject(false);}
         console.log("1 record inserted to user_otp");

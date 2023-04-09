@@ -8,15 +8,6 @@ const mysql= require('mysql2');
         database: process.env.MYSQL_database
     });
   
-    connectDB.connect((err)=>{
-      if(err){
-          throw err;
-      }
-      console.log("connected to first_sql_db database..."); 
-  
-  })
-
-
 
 
 module.exports={connectDB};

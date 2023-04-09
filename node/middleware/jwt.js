@@ -16,9 +16,9 @@ function authenticateToken(req, res, next) {
     } 
   
     jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
-      console.log(err)
+      
    
-      if (err) return res.send("sign in with password");
+      if (err){console.log(err); return res.send("sign in with password");} 
   
       req.user = user;
         // console.log(user_mail);

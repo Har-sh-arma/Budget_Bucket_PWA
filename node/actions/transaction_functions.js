@@ -4,7 +4,7 @@ function get_user_id(email){
     return new Promise((resolve,reject)=>{
         var sql = `SELECT * FROM users WHERE email="${email}"`;
         connectDB.query(sql,(err,result)=>{
-            if(err){console.log(err); reject(err) };
+            if(err){console.log(err); throw err; };
             resolve(result[0].user_id);
         })
     })
@@ -14,7 +14,7 @@ function get_budget_id(user_id,month,year){
     return new Promise((resolve,reject)=>{
         var sql =`SELECT * from budget_monthly WHERE user_id='${user_id}' AND MONTH(month) = '${month}' AND YEAR(month) = '${year}'`;
         connectDB.query(sql,(err,result)=>{
-            if(err){console.log(err); reject(err) };
+            if(err){console.log(err); throw err; };
             resolve(result[0].budget_id);
         })
     })
@@ -24,7 +24,7 @@ function check_session_id_already_exists(session_id){
     return new Promise((resolve,reject)=>{ 
         var sql = `SELECT * from session_budget WHERE session_id='${session_id}'`;
         connectDB.query(sql,(err,result)=>{
-            if(err){console.log(err); reject(err) };
+            if(err){console.log(err); throw err; };
             if(result[0]==undefined)
                 resolve(0);
             else
@@ -36,7 +36,7 @@ function check_session_id_already_exists(session_id){
 function insert_session_records(sql){
     return new Promise((resolve,reject)=>{
         connectDB.query(sql,(err,result)=>{
-            if(err){console.log(err); reject(err) };
+            if(err){console.log(err); throw err; };
             resolve(`session budget initialised`);
         })
     })
@@ -45,7 +45,7 @@ function insert_session_records(sql){
 function insert_transaction_records(sql){
     return new Promise((resolve,reject)=>{
         connectDB.query(sql,(err,result)=>{
-            if(err){console.log(err); reject(err) };
+            if(err){console.log(err); throw err; };
             resolve(`transactions saved to the database`);
         })
     })
@@ -141,6 +141,7 @@ async function insert_transactions(email,month,year,transactions,res){
     }
     }catch(err){
         console.log(err);
+        res.status(500).send("server side err for transaction!!");
     }  
     
     
@@ -157,6 +158,7 @@ async function async_get_transactions_for_month(year,month,email,res){
         });
     }catch(err){
         console.log(err);
+        res.status(500).send("server side err for transaction!!");
     }
         
 }

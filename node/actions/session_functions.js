@@ -6,22 +6,26 @@ function update_session_details(session_array,i,user_id){
         console.log(session_array[i].categorywise);
         var sql =  `UPDATE session_budget SET spent='${session_array[i].spent}',categorywise = '${JSON.stringify(session_array[i].categorywise)}' WHERE session_id='${user_id+"_"+session_array[i].session_id}'`;
         connectDB.query(sql,(err,result)=>{
-            if(err){console.log(err); reject(err)}
+            if(err){console.log(err); throw  err;}
             resolve(++i);
         })
     })
 }
 
 async function async_update_session_details(session_array,email,res){
-    let i=0
-    const user_id = await get_user_id(email);
-    while(i<session_array.length){
-        i = await update_session_details(session_array,i,user_id);
-        console.log("inserted  a session",i-1);
-        if(i==session_array.length)
-        res.send("inserted sessions"); 
+    try{
+        let i=0
+        const user_id = await get_user_id(email);
+        while(i<session_array.length){
+            i = await update_session_details(session_array,i,user_id);
+            console.log("inserted  a session",i-1);
+            if(i==session_array.length)
+            res.send("inserted sessions"); 
+        }
+    }catch(err){
+        console.log(err);
+        res.status(500).send("server side session error has ocurred!!");
     }
-
 }
 
 
