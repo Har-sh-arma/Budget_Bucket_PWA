@@ -1,8 +1,8 @@
 const cacheName = "Budget_Bucket_Cachev1";
 const appShellFiles = [
-  "Login_page/index.html",
-  "Login_page/script.js",
-  "Login_page/style.css"];
+  "UI/Login_page/index.html",
+  "UI/Login_page/script.js",
+  "UI/Login_page/style.css"];
 
   self.addEventListener("install", (e) => {
     console.log(" Budget Buck[Service Worker] Install");
