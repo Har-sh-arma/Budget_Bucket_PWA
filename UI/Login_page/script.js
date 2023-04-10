@@ -136,3 +136,7 @@ function sgn() {
 
   console.log(user);
 }
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("../../sw.js");
+}
