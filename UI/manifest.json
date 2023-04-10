@@ -453,8 +453,8 @@
     }
   ],
     "serviceworker": {
-    "src": "../UI/sw.js",
-    "scope": "/",
+    "src": "sw.js",
+    "scope": "/Budget_Bucket_PWA/UI",
     "use_cache": true
   },
   "start_url": "/",
