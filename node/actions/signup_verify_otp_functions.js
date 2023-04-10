@@ -6,7 +6,7 @@ const { delete_otp } = require('../actions/otp');
 
 function insertDB_user_details(user_name,email,DOB,location,pass_hash){
     return new Promise((resolve,reject)=>{
-        var sql = `INSERT INTO users(name,email,DOB,location,pass_hash) VALUES ('${user_name}', '${email}', '${DOB}', '${location}', '${pass_hash}')`;
+        var sql = `INSERT INTO users(name,email,pass_hash) VALUES ('${user_name}', '${email}','${pass_hash}')`;
         connectDB.query(sql, function (err, result) {
           if (err){console.log(err);throw err;}
           console.log("1 record inserted to users table");
