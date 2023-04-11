@@ -140,7 +140,7 @@ function sgn() {
   // }
   // xhr.send(JSON.stringify(user));
 
-  postData("http://localhost:5050/signup/getOTP", user).then((data) => {
+  postData("http://127.0.0.1:5050/signup/getOTP", user).then((data) => {
     console.log(data);
   });
 
