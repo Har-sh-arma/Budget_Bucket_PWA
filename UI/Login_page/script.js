@@ -142,6 +142,8 @@ function sgn() {
 
   postData("http://127.0.0.1:5050/signup/getOTP", user).then((data) => {
     console.log(data);
+  }).catch((err)=>{
+    console.log(err)
   });
 
   document.getElementById("udiv").remove();
