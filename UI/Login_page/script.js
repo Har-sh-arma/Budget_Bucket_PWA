@@ -5,6 +5,25 @@ var username = document.getElementById("usrnm");
 var password = document.getElementById("pswd");
 var user = {};
 
+async function postData(url = "", data = {}) {
+  const response = await fetch(url, {
+    method: "POST", 
+    mode: "cors", 
+    cache: "default",
+    credentials: "same-origin", 
+    headers: {
+      "Content-Type": "application/json",
+    },
+    redirect: "follow",
+    referrerPolicy: "no-referrer",
+    body: JSON.stringify(data),
+  });
+  return response.json();
+}
+
+
+
+
 
 el.addEventListener("click", lgin);
 
@@ -33,10 +52,13 @@ function otp() {
   user["otp"] = otp;
   console.log(user);
   if (validate_otp(otp, otp_hash)) {
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:5050/signup/verifyOTP", true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify(user));
+    // var xhr = new XMLHttpRequest();
+    // xhr.open("POST", "http://localhost:5050/signup/verifyOTP", true);
+    // xhr.setRequestHeader('Content-Type', 'application/json');
+    // xhr.send(JSON.stringify(user));'
+    postData("http://localhost:5050/signup/verifyOTP", user).then((data) => {
+  console.log(data);
+});
   }
   else {
     console.log("OTP assumed to be incorrect");
@@ -107,16 +129,20 @@ function sgn() {
   user["username"] = username.value;
   user["password"] = password.value;
   user["email"] = email.value;
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://localhost:5050/signup/getOTP", true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState === 4) {
-      console.log(xhr.response);
-      otp_hash = xhr.response["hash"];
-    }
-  }
-  xhr.send(JSON.stringify(user));
+  // var xhr = new XMLHttpRequest();
+  // xhr.open("POST", "http://localhost:5050/signup/getOTP", true);
+  // xhr.setRequestHeader('Content-Type', 'application/json');
+  // xhr.onreadystatechange = () => {
+  //   if (xhr.readyState === 4) {
+  //     console.log(xhr.response);
+  //     otp_hash = xhr.response["hash"];
+  //   }
+  // }
+  // xhr.send(JSON.stringify(user));
+
+  postData("http://localhost:5050/signup/getOTP", user).then((data) => {
+    console.log(data);
+  });
 
   document.getElementById("udiv").remove();
   document.getElementById("password").remove();
