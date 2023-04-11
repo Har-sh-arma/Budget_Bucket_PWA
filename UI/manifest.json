@@ -454,7 +454,7 @@
   ],
     "serviceworker": {
     "src": "sw.js",
-    "scope": "/",
+    "scope": "/Budget_Bucket_PWA/UI/Login_page/",
     "use_cache": true
   },
   "start_url": "/Budget_Bucket_PWA/UI",
