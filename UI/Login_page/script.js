@@ -34,7 +34,7 @@ function otp() {
   console.log(user);
   if (validate_otp(otp, otp_hash)) {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:3000/register_user", true);
+    xhr.open("POST", "http://localhost:5050/signup/verifyOTP", true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(user));
   }
@@ -44,6 +44,9 @@ function otp() {
 }
 
 function sup() {
+
+  el.removeEventListener("click", lgin);
+  el.addEventListener("click", sgn);
   var div = document.createElement('div');
   div.id = "udiv";
   div.className = "txt_field";
@@ -64,10 +67,10 @@ function sup() {
   var password = document.getElementById("pswd");
   var email = document.getElementById("omk");
 
-  if (username.value !== "" && password.value !== "" && email.value !== "") {
-    el.removeEventListener("click", lgin);
-    el.addEventListener("click", sgn);
-  }
+  // if (username.value !== "" && password.value !== "" && email.value !== "") {
+  //   el.removeEventListener("click", lgin);
+  //   el.addEventListener("click", sgn);
+  // }
 }
 
 function lgin() {
@@ -80,7 +83,7 @@ function lgin() {
   user["password"] = password.value;
 
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://localhost:3000/validate_user_login", true);
+  xhr.open("POST", "http://localhost:5050/login", true);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.onreadystatechange = () => {
     if (xhr.readyState === 4) {
@@ -96,6 +99,7 @@ function lgin() {
 }
 
 function sgn() {
+  var user = {};
   var username = document.getElementById("usrnm");
   var password = document.getElementById("pswd");
   var email = document.getElementById("omk");
@@ -104,7 +108,7 @@ function sgn() {
   user["password"] = password.value;
   user["email"] = email.value;
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://localhost:3000/get_otp", true);
+  xhr.open("POST", "http://localhost:5050/signup/getOTP", true);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.onreadystatechange = () => {
     if (xhr.readyState === 4) {
