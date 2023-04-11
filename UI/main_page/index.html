@@ -1,0 +1,65 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="icon" href="Images_used/favicon/chatbot.png" type="image/x-icon" />
+    <title>Bill_Bot</title>
+</head>
+
+<body>
+    <!-- markup for the sliding navigation bar -->
+    <nav class="nav_bar" onclick="show_nb()" onblur="hide_nb()">
+        <div class="toogle_but" onblur="hide_nb()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul id="menu_1">
+            <li class="item">
+                <a href="../Your_Account/yourAccount.html"> Your Account </a>
+            </li>
+            <li class="item"><a href="../help/help.html"> Budget </a></li>
+            <li class="item">
+                <a href="../contact_us/contact_us.html"> Expenditure </a>
+            </li>
+            <li class="item">
+                <a href="../contact_us/contact_us.html"> Contact us </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="page">
+        <!-- markup for animation -->
+
+        <div class="container">
+            <div class="circular-progress">
+                <div class="value-container">
+                    <form action=""><input type="text" placeholder="&#x20B9" id="aip"> </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- markup for animation finished  -->
+
+        <!-- marup for expenditure class -->
+        <div class="but_cont">
+
+        </div>
+        <!-- marup for expenditure class ends -->
+
+        <div class="add">
+            <button class="addc" onclick="add_amount()">
+                Add
+            </button>
+        </div>
+    </div>
+
+
+
+    <script src="index.js"></script>
+</body>
+
+</html>
