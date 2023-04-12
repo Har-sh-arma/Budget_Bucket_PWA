@@ -24,7 +24,7 @@ function authenticateToken(req, res, next) {
         // console.log(user_mail);
         var sql = `select * from users where email="${req.user}"`;
         connectDB.query(sql,(err,result)=>{
-            if(err) throw err;
+            if(err){console.log(err); res.status(500).send("db err")};
             if(result[0]!=undefined){  
                 console.log("jwt token verified"); 
                 next();
