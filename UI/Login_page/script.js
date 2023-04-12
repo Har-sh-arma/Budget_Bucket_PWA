@@ -98,7 +98,7 @@ function sgn() {
   console.log(users);
 
   axios.post("/signup/getOTP", users, {
-    baseURL: 'http://localhost:5050',
+    baseURL: 'http://192.168.42.7:5050',
 }).then(res => {
     console.log(res);
   }).catch(err => {
