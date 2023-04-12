@@ -1,7 +1,7 @@
 {    "name": "Budget Bucket Lite",
 "short_name": "BBL",
 "description": "Progressive Web app version of Budget Bucket app",
-"theme_color": "#0d4c73",
+"theme_color": "#0d4c74",
 "icons": [
     {
       "src": "windows11/SmallTile.scale-100.png",
@@ -457,5 +457,5 @@
     "scope": "/",
     "use_cache": true
   },
-  "start_url": "/Budget_Bucket_PWA/UI",
+  "start_url": "/Budget_Bucket_PWA/UI/Login_page",
   "display": "standalone"}

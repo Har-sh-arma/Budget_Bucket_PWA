@@ -4,6 +4,25 @@ let el = document.getElementById("sub");
 
 var user = {};
 
+async function postData(url = "", data = {}) {
+  const response = await fetch(url, {
+    method: "POST", 
+    mode: "cors", 
+    cache: "default",
+    credentials: "same-origin", 
+    headers: {
+      "Content-Type": "application/json",
+    },
+    redirect: "follow",
+    referrerPolicy: "no-referrer",
+    body: JSON.stringify(data),
+  });
+  return response.json();
+}
+
+
+
+
 
 el.addEventListener("click", lgin);
 
@@ -41,10 +60,10 @@ function sup() {
   var password = document.getElementById("pswd");
   var email = document.getElementById("omk");
 
-  if (username.value !== "" && password.value !== "" && email.value !== "") {
-    el.removeEventListener("click", lgin);
-    el.addEventListener("click", sgn);
-  }
+  // if (username.value !== "" && password.value !== "" && email.value !== "") {
+  //   el.removeEventListener("click", lgin);
+  //   el.addEventListener("click", sgn);
+  // }
 }
 
 function lgin() {
@@ -65,9 +84,11 @@ function lgin() {
 function sgn() {
 
   var users = {};
+
   var username = document.getElementById("usrnm");
   var password = document.getElementById("pswd");
   var email = document.getElementById("omk");
+
 
   users["username"] = username.value;
   users["password"] = password.value;
@@ -80,6 +101,7 @@ function sgn() {
     console.log(res);
   }).catch(err => {
     console.log(err);
+
   });
 
   document.getElementById("udiv").remove();
