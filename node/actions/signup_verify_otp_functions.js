@@ -8,7 +8,7 @@ function insertDB_user_details(user_name,email,DOB,location,pass_hash){
     return new Promise((resolve,reject)=>{
         var sql = `INSERT INTO users(name,email,pass_hash) VALUES ('${user_name}', '${email}','${pass_hash}')`;
         connectDB.query(sql, function (err, result) {
-          if (err){console.log(err);throw err;}
+          if (err){console.log(err);reject(err);}
           console.log("1 record inserted to users table");
           resolve(true);
     })
@@ -20,7 +20,7 @@ function get_otp_hash(email){
     return new Promise((resolve,reject)=>{
         var sql = `SELECT * FROM user_otp WHERE email="${email}" and arrival_time IN (SELECT max(arrival_time) FROM user_otp)`;
         connectDB.query(sql,(err, result)=>{
-            if(err){console.log(err);throw err;}
+            if(err){console.log(err);reject(err);}
             if(result[0]!=undefined)
                 resolve(result[0].otp_hash); 
             else

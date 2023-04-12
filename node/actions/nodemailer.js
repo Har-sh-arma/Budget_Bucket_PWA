@@ -25,7 +25,7 @@ return new Promise((resolve,reject)=>{
           };
          
           transporter.sendMail(mailData, function (err, info) {
-              if(err){console.log(err); throw err; }
+              if(err){console.log(err); reject(err); }
               console.log(info);
               resolve(true); 
            }); 
