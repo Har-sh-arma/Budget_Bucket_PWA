@@ -6,7 +6,7 @@ function update_session_details(session_array,i,user_id){
         console.log(session_array[i].categorywise);
         var sql =  `UPDATE session_budget SET spent='${session_array[i].spent}',categorywise = '${JSON.stringify(session_array[i].categorywise)}' WHERE session_id='${user_id+"_"+session_array[i].session_id}'`;
         connectDB.query(sql,(err,result)=>{
-            if(err){console.log(err); throw  err;}
+            if(err){console.log(err); reject(err);}
             resolve(++i);
         })
     })
@@ -41,7 +41,7 @@ function get_session_trans_for_month(month,year,user_id){
     and YEAR(date)='${year}'
     and user_id='${user_id}'`;
           connectDB.query(sql,(err,result)=>{  
-             if(err) throw err;
+             if(err) reject(err);
              console.log(result);
              resolve(result);
 
