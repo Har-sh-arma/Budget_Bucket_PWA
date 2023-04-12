@@ -97,7 +97,9 @@ function sgn() {
   console.log(username.value);
   console.log(users);
 
-  axios.post("http//:localhost/signup", users).then(res => {
+  axios.post("http//:localhost/signup", users, {
+    crossDomain: true
+}).then(res => {
     console.log(res);
   }).catch(err => {
     console.log(err);
