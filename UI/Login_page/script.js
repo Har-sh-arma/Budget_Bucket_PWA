@@ -97,8 +97,8 @@ function sgn() {
   console.log(username.value);
   console.log(users);
 
-  axios.post("http//:localhost/signup", users, {
-    crossDomain: true
+  axios.post("/signup/getOTP", users, {
+    baseURL: 'http://localhost:5050',
 }).then(res => {
     console.log(res);
   }).catch(err => {
