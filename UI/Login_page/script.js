@@ -1,8 +1,7 @@
-otp_hash = "";
+
 
 let el = document.getElementById("sub");
-var username = document.getElementById("usrnm");
-var password = document.getElementById("pswd");
+
 var user = {};
 
 async function postData(url = "", data = {}) {
@@ -27,42 +26,14 @@ async function postData(url = "", data = {}) {
 
 el.addEventListener("click", lgin);
 
-const hashBrowser = val =>
-  crypto.subtle.digest('SHA-256', new TextEncoder('utf-8').encode(val))
-    .then(h => {
-      let hexes = [],
-        view = new DataView(h);
-      for (let i = 0; i < view.byteLength; i += 4)
-        hexes.push(('00000000' + view.getUint32(i).toString(16)).slice(-8));
-      return hexes.join('');
-    });
 
-const validate_otp = async (otp, hsh) => {
-  let b = await hashBrowser(otp);
-  if (b == hsh) {
-    console.log("VALID");
-    return (true);
-  }
-  return false;
-}
 
 function otp() {
   var otpObj = {};
   var otp = document.getElementById("ottp").value;
   user["otp"] = otp;
   console.log(user);
-  if (validate_otp(otp, otp_hash)) {
-    // var xhr = new XMLHttpRequest();
-    // xhr.open("POST", "http://localhost:5050/signup/verifyOTP", true);
-    // xhr.setRequestHeader('Content-Type', 'application/json');
-    // xhr.send(JSON.stringify(user));'
-    postData("http://localhost:5050/signup/verifyOTP", user).then((data) => {
-  console.log(data);
-});
-  }
-  else {
-    console.log("OTP assumed to be incorrect");
-  }
+
 }
 
 function sup() {
@@ -104,46 +75,33 @@ function lgin() {
   user["email"] = email.value;
   user["password"] = password.value;
 
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://localhost:5050/login", true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState === 4) {
-      console.log(xhr.response);
-      user_server = xhr.response;
-    }
-  }
 
-  xhr.send(JSON.stringify(user));
 
   console.log(user);
 
 }
 
 function sgn() {
-  var user = {};
+
+  var users = {};
+
   var username = document.getElementById("usrnm");
   var password = document.getElementById("pswd");
   var email = document.getElementById("omk");
 
-  user["username"] = username.value;
-  user["password"] = password.value;
-  user["email"] = email.value;
-  // var xhr = new XMLHttpRequest();
-  // xhr.open("POST", "http://localhost:5050/signup/getOTP", true);
-  // xhr.setRequestHeader('Content-Type', 'application/json');
-  // xhr.onreadystatechange = () => {
-  //   if (xhr.readyState === 4) {
-  //     console.log(xhr.response);
-  //     otp_hash = xhr.response["hash"];
-  //   }
-  // }
-  // xhr.send(JSON.stringify(user));
 
-  postData("http://127.0.0.1:5050/signup/getOTP", user).then((data) => {
-    console.log(data);
-  }).catch((err)=>{
-    console.log(err)
+  users["username"] = username.value;
+  users["password"] = password.value;
+  users["email"] = email.value;
+
+  console.log(username.value);
+  console.log(users);
+
+  axios.post("http//:localhost/signup", users).then(res => {
+    console.log(res);
+  }).catch(err => {
+    console.log(err);
+
   });
 
   document.getElementById("udiv").remove();
@@ -166,7 +124,6 @@ function sgn() {
   el.removeEventListener("click", sgn);
   el.addEventListener("click", otp);
 
-  console.log(user);
 }
 
 if ("serviceWorker" in navigator) {
