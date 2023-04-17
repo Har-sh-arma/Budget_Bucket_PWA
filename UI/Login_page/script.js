@@ -32,6 +32,13 @@ function otp() {
   var otpObj = {};
   var otp = document.getElementById("ottp").value;
   user["otp"] = otp;
+  axios.post("/signup/verifyOTP", user, {
+    baseURL: 'https://cd8e-103-100-17-152.ngrok-free.app',
+}).then(res => {
+    console.log(res);
+  }).catch(err => {
+    console.log(err);
+  });
   console.log(user);
 
 }
@@ -74,8 +81,15 @@ function lgin() {
 
   user["email"] = email.value;
   user["password"] = password.value;
+  user["device_info"] = "";
 
-
+  axios.post("/login", user, {
+    baseURL: 'https://cd8e-103-100-17-152.ngrok-free.app',
+}).then(res => {
+    console.log(res);
+  }).catch(err => {
+    console.log(err);
+  });
 
   console.log(user);
 
@@ -84,11 +98,9 @@ function lgin() {
 function sgn() {
 
   var users = {};
-
   var username = document.getElementById("usrnm");
   var password = document.getElementById("pswd");
   var email = document.getElementById("omk");
-
 
   users["username"] = username.value;
   users["password"] = password.value;
@@ -103,7 +115,6 @@ function sgn() {
     console.log(res);
   }).catch(err => {
     console.log(err);
-
   });
 
   document.getElementById("udiv").remove();
