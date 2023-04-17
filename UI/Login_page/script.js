@@ -92,9 +92,10 @@ function lgin() {
     //console.log(err.request.status);
 
     if (err.request.status === 401) {
-      alert("Wrong Password")
 
     document.getElementById("pswd").value = ""
+    alert("Wrong Password")
+
     }
 
   });
