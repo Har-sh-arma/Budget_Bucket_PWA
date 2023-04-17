@@ -75,8 +75,6 @@ function sup() {
 
 function lgin() {
 
-  
-
   user = {};
   var email = document.getElementById("omk");
   var password = document.getElementById("pswd");
@@ -92,7 +90,6 @@ function lgin() {
     console.log(res);
   }).catch(err => {
     //console.log(err.request.status);
-
     if (err.request.status === 401) {
 
     document.getElementById("pswd").value = ""
