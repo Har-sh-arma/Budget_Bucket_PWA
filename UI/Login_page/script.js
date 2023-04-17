@@ -94,7 +94,10 @@ function lgin() {
 
     document.getElementById("pswd").value = ""
     alert("Wrong Password")
-
+    }
+    else if(err.request.status === 401){
+    document.getElementById("pswd").value = ""
+    alert("logout from the other device")
     }
 
   });
