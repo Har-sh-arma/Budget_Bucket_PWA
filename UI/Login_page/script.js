@@ -102,14 +102,14 @@ function sgn() {
   var password = document.getElementById("pswd");
   var email = document.getElementById("omk");
 
-  users["username"] = username.value;
-  users["password"] = password.value;
-  users["email"] = email.value;
+  user["username"] = username.value;
+  user["password"] = password.value;
+  user["email"] = email.value;
 
   console.log(username.value);
-  console.log(users);
+  console.log(user);
 
-  axios.post("/signup/getOTP", users, {
+  axios.post("/signup/getOTP", user, {
     baseURL: 'https://cd8e-103-100-17-152.ngrok-free.app',
 }).then(res => {
     console.log(res);
