@@ -91,11 +91,10 @@ function lgin() {
   }).catch(err => {
     //console.log(err.request.status);
     if (err.request.status === 401) {
-
     document.getElementById("pswd").value = ""
     alert("Wrong Password")
     }
-    else if(err.request.status === 400){
+    else if(err.request.status === 406){
     document.getElementById("pswd").value = ""
     alert("logout from the other device")
     }
