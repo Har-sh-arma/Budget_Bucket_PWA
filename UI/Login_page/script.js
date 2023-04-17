@@ -86,8 +86,8 @@ function lgin() {
   axios.post("/login", user, {
     baseURL: 'https://cd8e-103-100-17-152.ngrok-free.app',
 }).then(res => {
-    location.href = "../main_page/index.html"
-    // console.log(res);
+    // location.href = "../main_page/index.html"
+    console.log(res);
   }).catch(err => {
     //console.log(err.request.status);
 
