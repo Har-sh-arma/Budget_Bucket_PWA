@@ -4,7 +4,17 @@ const PORT = 5050;
 const { urlencoded } = require('express');
 const cookieParser= require('cookie-parser')
 require('dotenv').config();
-const {connectDB}= require('./SQL/database')
+const {connectDB}= require('./SQL/database');
+var cors = require('cors')
+
+var fs = require('fs');
+// var http = require('http');
+var https = require('https');
+var privateKey  = fs.readFileSync('cert/private.pem', 'utf8');
+var certificate = fs.readFileSync('cert/public.pem', 'utf8');
+var credentials = {key: privateKey, cert: certificate};
+var httpsServer = https.createServer(credentials, app);
+
 
 
 const {signup} = require('./routes/signup');
@@ -16,7 +26,7 @@ const {transaction}= require('./routes/transaction');
 const {session}= require('./routes/session');
 const {profile}= require('./routes/profile');
 
-
+app.use(cors())
 app.use(express.json());
 app.use(urlencoded({extended:true}));
 app.use(cookieParser());
@@ -43,10 +53,13 @@ start_server= ()=>{
             throw err;
         }
         console.log("connected to the database..."); 
-        app.listen(PORT,()=>{
-            console.log("server is listening on 5050...");
+        httpsServer.listen(PORT, () => {
+            console.log("server is listening on 5050...")
+        });
+        // app.listen(PORT,()=>{
+        //     console.log("server is listening on 5050...");
             
-        });  
+        // });  
     })
 }
 start_server();
