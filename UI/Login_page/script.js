@@ -4,6 +4,7 @@ let el = document.getElementById("sub");
 
 var user = {};
 ForwardingURL = 'https://0487-49-36-90-156.ngrok-free.app';
+localStorage.setItem = ("ForwardingURL", 'https://0487-49-36-90-156.ngrok-free.app');
 async function postData(url = "", data = {}) {
   const response = await fetch(url, {
     method: "POST", 
@@ -88,7 +89,8 @@ function lgin() {
   axios.post("/login", user, {
     baseURL: ForwardingURL,
 }).then(res => {
-    location.href = "../main_page/index.html"
+    localStorage.setItem("userEmail", user.email)
+    location.href = "../main_page/"
   }).catch(err => {
     //console.log(err.request.status);
     if (err.request.status === 401) {

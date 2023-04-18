@@ -1,14 +1,26 @@
 
 var flag = 0;
 let db = null;
-
+let category = ""
 function show_nb() {
     let x = document.getElementsByClassName('nav_bar');
     x[0].classList.toggle('active');
 }
 
+if (localStorage.getItem("budget")===null) {
+    localStorage.setItem("spent", 0)
+    localStorage.setItem("budget",0)
+    localStorage.setItem("set_budget",0)
+}
+if (localStorage.getItem("lstring")===null){
+    localStorage.setItem("lstring", 'Transport Food Entertainment Utilities miscellaneous')
+    localStorage.setItem("extra",0)
+    localStorage.setItem("budget",0)
+} 
+let budget = Number(localStorage.getItem("budget"));
+let spent = Number(localStorage.getItem("spent"));
 
-
+lstring = localStorage.getItem("lstring")
 
 // script for animation
 {let progressBar = document.querySelector(".circular-progress");
@@ -18,11 +30,11 @@ let progressValue = 0;
 let progressEndValue = 100;
 let speed = 5;
 
-let max = 5000;
-let spent = 4401;
+let max = Math.max(budget, 1);
+let sspent = Math.max(spent, 0.7)
 let left = max - spent;
 
-let prog = (spent / max) * 100;
+let prog = (sspent / max) * 100;
 
 let progress = setInterval(() => {
     progressValue++;
@@ -54,28 +66,16 @@ let progress = setInterval(() => {
 
 // integration with main page
 
-budget = {
-    extra: 0,
-    amount: 0,
-    categories: ['transport', 'food', 'entertainment', 'utilities', 'miscellaneous'],
-    spendings: {
-        total_spent: 0,
-
-    }
-}
-
-let category = "";
-
+cat_list = lstring.split(" ");
 
 function display_but() {
 
     let parent = document.getElementsByClassName("but_cont")[0];
-    for (i in budget.categories) {
+    for (i in cat_list) {
         let e = document.createElement('button');
-        e.id = budget.categories[i];
+        e.id = cat_list[i];
         e.onclick = function () {
             category = this.id;
-
         };
         e.onfocus = function () {
             if (flag === 0) {
@@ -91,7 +91,7 @@ function display_but() {
 
             flag = 0;
         }
-        e.innerHTML = budget.categories[i];
+        e.innerHTML = cat_list[i];
         e.className = "catbut";
         parent.appendChild(e);
         // console.log(`${i}`);
@@ -104,6 +104,7 @@ display_but();
 
 
 function add_amount() {
+    if(localStorage.getItem("set_budget")==="0"){alert("Set a Budget first ");window.location.href = "../Budget_page";return;}
     if (category != "") {
 
         let date = new Date();
@@ -111,7 +112,6 @@ function add_amount() {
         month++;
         let fulldate = date.getDate() + "-" + month + "-" + date.getFullYear();
         let fulltime = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-        let date_time = fulldate + "_" + fulltime;
         let amount = document.getElementById("aip");
         transaction = {
             date: fulldate,
@@ -122,6 +122,9 @@ function add_amount() {
         console.log(transaction);
         console.log(db);
         // budget.spendings[date_time] = transaction;
+        spent+=Number(amount.value);
+        localStorage.setItem("spent", spent)
+
         const tx = db.transaction("transactions", "readwrite");
         const trans = tx.objectStore("transactions");
         trans.add(transaction)
@@ -131,14 +134,14 @@ function add_amount() {
         alert("select the category first!!!");
     }
 
-    console.log(budget.spendings);
+    // console.log(budget.spendings);
 
     flag = 0;
 
     for (i in budget.categories) {
         document.getElementsByClassName("catbut")[i].style.background = "white";
     }
-
+    window.location.reload()
     document.getElementById("aip").value = "";
 }
 

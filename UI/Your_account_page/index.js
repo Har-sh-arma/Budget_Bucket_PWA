@@ -47,9 +47,10 @@ input.addEventListener('change', () => {
     const files = input.files;
     // console.log((files));
     document.querySelector('#imgFileUpload').src = URL.createObjectURL(files[0]);
-
 })
 
+let userEmail = localStorage.getItem("userEmail")
+document.getElementById("emailinp").placeholder = userEmail;
 
 
 
