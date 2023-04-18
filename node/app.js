@@ -51,13 +51,13 @@ start_server= ()=>{
             throw err;
         }
         console.log("connected to the database..."); 
-        httpsServer.listen(PORT, () => {
-            console.log("server is listening on 5050...")
-        });
-        // app.listen(PORT,()=>{
-        //     console.log("server is listening on 5050...");
+//        httpsServer.listen(PORT, () => {
+  //          console.log("server is listening on 5050...")
+    //    });
+         app.listen(PORT,()=>{
+             console.log("server is listening on 5050...");
             
-        // });  
+         });  
     })
 }
 start_server();

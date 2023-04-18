@@ -4,7 +4,7 @@ const { delete_otp } = require('../actions/otp');
 
 
 
-function insertDB_user_details(user_name,email,DOB,location,pass_hash){
+function insertDB_user_details(user_name,email,pass_hash){
     return new Promise((resolve,reject)=>{
         var sql = `INSERT INTO users(name,email,pass_hash) VALUES ('${user_name}', '${email}','${pass_hash}')`;
         connectDB.query(sql, function (err, result) {
@@ -26,7 +26,7 @@ function get_otp_hash(email){
             else
                 resolve(false);
                 
-                console.log(result[0].otp_hash);
+           //     console.log(result[0].otp_hash);
            
         })
     })
@@ -37,15 +37,15 @@ async function verify_otp(req,res){
         const {email} = req.body;
         const otp_hash = await get_otp_hash(email);
         if(otp_hash){
-            const {otp, email,DOB,location,password,name} = req.body;
+            const {otp, email,password,username} = req.body;
             const valid= await bcrypt.compare(otp,otp_hash);
-            // console.log("valid",valid);
+            // console.log(`password ${password}`);
             if(valid){
                 console.log(`Valid OTP: ${email} verified`);
                 var salt = Math.ceil(Math.random()*20);
                 const pass_hash= await bcrypt.hash(password,salt);
-                // console.log("pass_hash",pass_hash);
-                const insert = await insertDB_user_details(name,email,DOB,location,pass_hash)
+                console.log("pass_hash ",pass_hash);
+                const insert = await insertDB_user_details(username,email,pass_hash)
                 // console.log("insert ",insert);
                 if(insert){  
                     const deleted = await delete_otp(email);

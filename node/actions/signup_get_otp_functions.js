@@ -6,7 +6,7 @@ require('dotenv').config();
 
 function user_exists(email){
     return new Promise((resolve,reject)=>{
-        var sql = `SELECT * FROM user_otp WHERE email="${email}"`;
+        var sql = `SELECT * FROM users WHERE email="${email}"`;
         connectDB.query(sql,(err, result)=>{
             if(err){console.log(err);reject(err);}
             if(result[0]==undefined)
@@ -22,7 +22,7 @@ async function send_otp_to_user(req,res){
             const exists = await user_exists(email);
             // console.log("exists ",exists);
             if(exists){
-                    res.status(402);
+                    res.status(406);
                     res.send("Already Signed Up");
             }else{
                     let otp = generateOTP();

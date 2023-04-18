@@ -35,16 +35,16 @@ async function login_user(req,res){
                         if(err) throw err;
                         console.log("device login info saved in database");
                         res.cookie('token',token);
-                        res.send("successfully logged in & jwt token sent!!!");
+                        res.status(200).send("successfully logged in & jwt token sent!!!");
                     })
                      
                 }
                 else{
-                    res.send("Invalid password");
+                    res.status(401).send("Invalid password");
                 }
 
             }else{
-                res.send(`first log out from the device: ${User_loggedin_device}`); 
+                res.status(406).send(`first log out from the device: ${User_loggedin_device}`); 
             }
         }else{
             res.send('first signup!!!');
