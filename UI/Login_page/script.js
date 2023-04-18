@@ -79,6 +79,7 @@ function lgin() {
   user = {};
   var email = document.getElementById("omk");
   var password = document.getElementById("pswd");
+  localStorage.setItem("user", user)
 
   user["email"] = email.value;
   user["password"] = password.value;
@@ -87,7 +88,6 @@ function lgin() {
   axios.post("/login", user, {
     baseURL: ForwardingURL,
 }).then(res => {
-  console.log(res);
     location.href = "../main_page/index.html"
   }).catch(err => {
     //console.log(err.request.status);
