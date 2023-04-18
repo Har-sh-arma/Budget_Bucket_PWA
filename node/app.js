@@ -24,6 +24,7 @@ const {authenticateToken}= require('./middleware/jwt');
 const {budget}= require('./routes/budget_set');
 const {transaction}= require('./routes/transaction');
 const {session}= require('./routes/session');
+const {profile}= require('./routes/profile');
 
 app.use(cors())
 app.use(express.json());
@@ -36,7 +37,8 @@ app.use('/login',login);
 app.use('/budget',budget);
 app.use('/transaction',transaction)
 app.use('/logout',logout);
-app.use('/session',session)
+app.use('/session',session);
+app.use('/profile',profile);
 
 
 
