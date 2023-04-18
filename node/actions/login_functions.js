@@ -3,7 +3,7 @@ const {connectDB} = require('../SQL/database');
 const {generateJwtToken} = require('../middleware/jwt');
 require('dotenv').config();
 
-function user_exists(email,sql){
+function user_exists(email){
     return new Promise((resolve,reject)=>{
         var sql = `SELECT * FROM users WHERE email="${email}"`;
         connectDB.query(sql,(err, result)=>{
