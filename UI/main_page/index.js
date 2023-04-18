@@ -185,7 +185,7 @@ const dbName = "Budget_Bucket";
 const request = indexedDB.open(dbName)
 
 request.onupgradeneeded = e =>{
-    const db = e.target.result;
+    db = e.target.result;
     db.createObjectStore("transactions", {keypath:"trans_id"})
 }
 request.onsuccess = e =>{
