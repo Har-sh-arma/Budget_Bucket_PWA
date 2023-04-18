@@ -3,7 +3,7 @@
 let el = document.getElementById("sub");
 
 var user = {};
-
+ForwardingURL = 'https://0487-49-36-90-156.ngrok-free.app';
 async function postData(url = "", data = {}) {
   const response = await fetch(url, {
     method: "POST", 
@@ -21,6 +21,7 @@ async function postData(url = "", data = {}) {
 }
 
 
+// https://0487-49-36-90-156.ngrok-free.app
 
 
 
@@ -33,7 +34,7 @@ function otp() {
   var otp = document.getElementById("ottp").value;
   user["otp"] = otp;
   axios.post("/signup/verifyOTP", user, {
-    baseURL: 'https://cd8e-103-100-17-152.ngrok-free.app',
+    baseURL: ForwardingURL,
 }).then(res => {
     console.log(res);
   }).catch(err => {
@@ -84,7 +85,7 @@ function lgin() {
   user["device_info"] = "";
 
   axios.post("/login", user, {
-    baseURL: 'https://cd8e-103-100-17-152.ngrok-free.app',
+    baseURL: ForwardingURL,
 }).then(res => {
     location.href = "../main_page/index.html"
     console.log(res);
@@ -120,7 +121,7 @@ function sgn() {
   console.log(user);
 
   axios.post("/signup/getOTP", user, {
-    baseURL: 'https://cd8e-103-100-17-152.ngrok-free.app',
+    baseURL: ForwardingURL,
 }).then(res => {
     console.log(res);
   }).catch(err => {
