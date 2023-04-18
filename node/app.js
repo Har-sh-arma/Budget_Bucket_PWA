@@ -38,7 +38,7 @@ app.use('/budget',budget);
 app.use('/transaction',transaction)
 app.use('/logout',logout);
 app.use('/session',session);
-app.use('profile',profile);
+app.use('/profile',profile);
 
 
 
