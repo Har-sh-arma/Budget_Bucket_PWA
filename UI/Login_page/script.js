@@ -80,7 +80,7 @@ function lgin() {
   user = {};
   var email = document.getElementById("omk");
   var password = document.getElementById("pswd");
-  localStorage.setItem("user", user)
+  // localStorage.setItem("user", user)
 
   user["email"] = email.value;
   user["password"] = password.value;
