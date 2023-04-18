@@ -4,9 +4,16 @@ const { user_exists } = require('../actions/login_functions');
 const profile = express.Router();
 
 
-// profile.post('/',authenticateToken,(req,res)=>{
-    
-// })
+profile.put('/',authenticateToken,(req,res)=>{
+    const email= req.user;
+    const {name,DOB,location,profile}= req.body;
+   var sql = `UPDATE users SET name='${name}' , DOB='${DOB}' , location='${location}' , profile='${profile}'`
+   connectDB.query(sql,(err,result)=>{
+    if(err){console.log(err); res.status(400).send("server side err");}
+    res.send("updated profile");
+    console.log("updated profile");
+})
+})
 
 profile.get('/',authenticateToken,(req,res)=>{
    async(req,res)=>{
