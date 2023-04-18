@@ -7,14 +7,6 @@ require('dotenv').config();
 const {connectDB}= require('./SQL/database');
 var cors = require('cors')
 
-var fs = require('fs');
-// var http = require('http');
-var https = require('https');
-var privateKey  = fs.readFileSync('cert/private.pem', 'utf8');
-var certificate = fs.readFileSync('cert/public.pem', 'utf8');
-var credentials = {key: privateKey, cert: certificate};
-var httpsServer = https.createServer(credentials, app);
-
 
 
 const {signup} = require('./routes/signup');
