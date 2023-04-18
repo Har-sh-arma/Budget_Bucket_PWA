@@ -7,7 +7,10 @@ require('dotenv').config();
 const {connectDB}= require('./SQL/database');
 var cors = require('cors')
 
-
+app.use(cors())
+app.use(express.json());
+app.use(urlencoded({extended:true}));
+app.use(cookieParser());
 
 const {signup} = require('./routes/signup');
 const {login}= require('./routes/login');
@@ -18,10 +21,6 @@ const {transaction}= require('./routes/transaction');
 const {session}= require('./routes/session');
 const {profile}= require('./routes/profile');
 
-app.use(cors())
-app.use(express.json());
-app.use(urlencoded({extended:true}));
-app.use(cookieParser());
 
 //Router paths
 app.use('/signup',signup);
