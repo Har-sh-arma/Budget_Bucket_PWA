@@ -127,7 +127,9 @@ function add_amount() {
             amount: amount.value
         }
         localStorage.setItem("id", id)
-        budget.spendings[date_time] = transaction;
+        console.log(transaction);
+        console.log(db);
+        // budget.spendings[date_time] = transaction;
         const tx = db.transaction("transactions", "readwrite");
         const trans = tx.objectStore("transactions");
         trans.add(transaction)
@@ -185,6 +187,9 @@ const request = indexedDB.open(dbName)
 request.onupgradeneeded = e =>{
     const db = e.target.result;
     db.createObjectStore("transactions", {keypath:"trans_id"})
+}
+request.onsuccess = e =>{
+    alert("success");
 }
 request.onerror = e =>{
     console.log(`error : ${e.target.error}`)
