@@ -1,11 +1,20 @@
 
 var flag = 0;
-
+let db = null;
+let id = 0;
 
 function show_nb() {
     let x = document.getElementsByClassName('nav_bar');
     x[0].classList.toggle('active');
 }
+
+if (localStorage.getItem("id") !== null) {
+    id = Number(localStorage.getItem("id"));
+}
+else(
+    localStorage.setItem("id", id)
+)
+
 
 // script for animation
 {let progressBar = document.querySelector(".circular-progress");
@@ -111,12 +120,17 @@ function add_amount() {
         let date_time = fulldate + "_" + fulltime;
         let amount = document.getElementById("aip");
         transaction = {
+            id: id++,
             date: fulldate,
             time: fulltime,
             category: category,
             amount: amount.value
         }
+        localStorage.setItem("id", id)
         budget.spendings[date_time] = transaction;
+        const tx = db.transaction("transactions", "readwrite");
+        const trans = tx.objectStore("transactions");
+        trans.add(transaction)
         category = "";
     }
     else {
@@ -170,7 +184,7 @@ const request = indexedDB.open(dbName)
 
 request.onupgradeneeded = e =>{
     const db = e.target.result;
-    db.createObjectStore("transaction", {keypath:"trans_id"})
+    db.createObjectStore("transactions", {keypath:"trans_id"})
 }
 request.onerror = e =>{
     console.log(`error : ${e.target.error}`)
