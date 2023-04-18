@@ -8,8 +8,7 @@ function show_nb() {
 }
 
 // script for animation
-
-let progressBar = document.querySelector(".circular-progress");
+{let progressBar = document.querySelector(".circular-progress");
 let valueContainer = document.querySelector(".value-container");
 
 let progressValue = 0;
@@ -48,6 +47,7 @@ let progress = setInterval(() => {
 }, speed);
 
 // script for animation ends
+}
 
 // integration with main page
 
@@ -62,17 +62,6 @@ budget = {
 }
 
 let category = "";
-
-
-
-
-// function foodi() { category = "food"; }
-// function cloth() { category = "cloth"; }
-// function transport() { category = "transport"; }
-// function medical() { category = "medical"; }
-// function entertainment() { category = "entertainment"; }
-// function utilities() { category = "utilities"; }
-// function education() { category = "education"; }
 
 
 function display_but() {
@@ -176,6 +165,15 @@ done_btn.addEventListener("click", function () {
     }
 });
 
+const dbName = "Budget_Bucket";
+const request = indexedDB.open(dbName)
+
+request.onupgradeneeded = e =>{
+    const db = e.target.result;
+    db.createObjectStore("transaction", {keypath:"trans_id"})
+}
+request.onerror = e =>{
+    console.log(`error : ${e.target.error}`)
+}
 
 
-// integration with main page ends

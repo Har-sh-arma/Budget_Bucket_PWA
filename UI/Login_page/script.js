@@ -87,8 +87,8 @@ function lgin() {
   axios.post("/login", user, {
     baseURL: ForwardingURL,
 }).then(res => {
+  console.log(res);
     location.href = "../main_page/index.html"
-    console.log(res);
   }).catch(err => {
     //console.log(err.request.status);
     if (err.request.status === 401) {
