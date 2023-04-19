@@ -1,3 +1,5 @@
+let ForwardingURL = localStorage.setItem("ForwardingURL");
+
 validate = () => {
     console.log("inside validate function");
 
@@ -50,7 +52,7 @@ input.addEventListener('change', () => {
 })
 
 function logout() {
-    axios.put("/logout", {email:email_id}, {
+    axios.put("/logout",{}, {
         baseURL: ForwardingURL,
     }).then(res => {
         location.href = "../Login_page/"
