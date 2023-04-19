@@ -54,6 +54,7 @@ input.addEventListener('change', () => {
 function logout() {
     axios.put("/logout",{}, {
         baseURL: ForwardingURL,
+        withCredentials:true
     }).then(res => {
         location.href = "../Login_page/"
       })
