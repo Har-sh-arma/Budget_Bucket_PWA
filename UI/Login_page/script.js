@@ -87,7 +87,8 @@ function lgin() {
   user["device_info"] = "";
 
   axios.post("/login", user, {
-    baseURL: ForwardingURL,
+        withCredentials:true,
+        baseURL: ForwardingURL
 }).then(res => {
     localStorage.setItem("userEmail", user.email)
     setTimeout(()=>{location.href = "../main_page/"},2000)
