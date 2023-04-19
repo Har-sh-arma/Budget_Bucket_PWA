@@ -34,7 +34,7 @@ async function login_user(req,res){
                     connectDB.query(sql,(err,result)=>{
                         if(err) throw err;
                         console.log("device login info saved in database");
-                        res.cookie('token',token);
+                        res.cookie('token',token,{maxAge: 84600000});
                         res.status(200).send("successfully logged in & jwt token sent!!!");
                     })
                      
