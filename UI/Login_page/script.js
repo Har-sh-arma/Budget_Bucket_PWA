@@ -90,7 +90,7 @@ function lgin() {
     baseURL: ForwardingURL,
 }).then(res => {
     localStorage.setItem("userEmail", user.email)
-    location.href = "../main_page/"
+    setTimeout(()=>{location.href = "../main_page/"},2000)
   }).catch(err => {
     //console.log(err.request.status);
     if (err.request.status === 401) {
