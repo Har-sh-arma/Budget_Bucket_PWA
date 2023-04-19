@@ -49,6 +49,14 @@ input.addEventListener('change', () => {
     document.querySelector('#imgFileUpload').src = URL.createObjectURL(files[0]);
 })
 
+function logout() {
+    axios.put("/logout", {email:email_id}, {
+        baseURL: ForwardingURL,
+    }).then(res => {
+        location.href = "../Login_page/"
+      })
+}
+
 let userEmail = localStorage.getItem("userEmail")
 document.getElementById("emailinp").placeholder = userEmail;
 
