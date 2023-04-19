@@ -1,4 +1,4 @@
-let ForwardingURL = localStorage.setItem("ForwardingURL");
+let ForwardingURL = localStorage.getItem("ForwardingURL");
 
 validate = () => {
     console.log("inside validate function");
