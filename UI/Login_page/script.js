@@ -3,7 +3,7 @@
 let el = document.getElementById("sub");
 
 var user = {};
-ForwardingURL = 'https://f150-103-100-17-156.ngrok-free.app';
+ForwardingURL = 'https://f76a-49-36-88-246.ngrok-free.app';
 localStorage.setItem("ForwardingURL", ForwardingURL);
 async function postData(url = "", data = {}) {
   const response = await fetch(url, {
