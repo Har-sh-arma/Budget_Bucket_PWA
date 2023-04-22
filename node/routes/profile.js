@@ -5,9 +5,9 @@ const {connectDB}= require('../SQL/database');
 const { get_profile } = require('../actions/profile_functions');
 
 
-profile.put('/',authenticateToken,(req,res)=>{
-    const email= req.user;
-    const {name,DOB,location,profile}= req.body;
+profile.put('/',(req,res)=>{
+    // const email= req.user;
+    const {name,DOB,location,profile,email}= req.body;
    var sql = `UPDATE users SET name='${name}' , DOB='${DOB}' , location='${location}' , profile='${profile}' where email='${email}'`
    connectDB.query(sql,(err,result)=>{
     if(err){console.log(err); res.status(400).send("server side err");}
@@ -16,7 +16,7 @@ profile.put('/',authenticateToken,(req,res)=>{
 })
 }) 
 
-profile.get('/',authenticateToken,(req,res)=>{  
+profile.get('/',(req,res)=>{  
    get_profile(req,res); 
 })
 

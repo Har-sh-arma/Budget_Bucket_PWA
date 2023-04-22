@@ -3,7 +3,7 @@ const { user_exists } = require("./login_functions");
 
 async function get_profile(req,res){
     try{
-        const user = await user_exists(req.user);
+        const user = await user_exists(req.body.email);
         if(user.exists){
             console.log(user);
             res.json({"name":user.details.name, "email":user.details.email, "DOB":user.details.DOB, "location": user.details.location, "profile": user.details.profile});

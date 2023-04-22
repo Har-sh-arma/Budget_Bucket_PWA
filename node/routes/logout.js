@@ -5,11 +5,11 @@ const { authenticateToken } = require('../middleware/jwt');
 require('dotenv').config();
 
   
-logout.put('/',authenticateToken,(req,res)=>{
-    const email = req.user;
-    console.log(email);
+logout.put('/',(req,res)=>{
+    // const email = req.user;
+    // console.log(email);
     // const email_fetched= new Promise((resolve,reject)=>{
-        
+    const {email}= req.body;
     // })
     var sql = `UPDATE users SET User_loggedin_device=null WHERE email='${email}'`;
     connectDB.query(sql,(err,result)=>{
