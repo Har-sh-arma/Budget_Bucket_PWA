@@ -56,12 +56,13 @@ input.addEventListener('change', () => {
     document.querySelector('#imgFileUpload').src = URL.createObjectURL(files[0]);
 })
 
-let transaction_list = []
+
 
 function logout() {
     const request = indexedDB.open(dbName)
     request.onsuccess = (e) =>{
         db = e.target.result;
+        let transaction_list = []
         const tx = db.transaction("transactions", "readonly");
         const trans = tx.objectStore("transactions");
         var cursorRequest = trans.openCursor();
@@ -70,14 +71,10 @@ function logout() {
           if (cursor) {
             // console.log(cursor.value);
             let t = {session_id:null, date:cursor.value.date,time: cursor.value.time,category: cursor.value.category,amount: cursor.value.amount};
-            // transaction_list.append(t);
-            console.log(t)
+            transaction_list.append(t);
+            // console.log(t)
             cursor.continue();
           }
-        }
-        // alert("success");
-    }
-    setTimeout(()=>{
         console.log(transaction_list)
         let post_obj = {transactions : transaction_list, email:userEmail}
         axios.put("/logout",post_obj, {
@@ -85,7 +82,12 @@ function logout() {
         withCredentials:true
     }).then(res => {
         location.href = "../Login_page/"
-      })}, 1000)
+      })
+        }
+        // alert("success");
+    }
+   
+        
 
 }
 
