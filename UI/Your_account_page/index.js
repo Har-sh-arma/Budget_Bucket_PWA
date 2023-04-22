@@ -56,21 +56,22 @@ input.addEventListener('change', () => {
     document.querySelector('#imgFileUpload').src = URL.createObjectURL(files[0]);
 })
 
-function logout() {
+let transaction_list = []
 
+function logout() {
     const request = indexedDB.open(dbName)
-    request.onsuccess = e =>{
+    request.onsuccess = (e) =>{
         db = e.target.result;
-        let transaction_list = []
         const tx = db.transaction("transactions", "readonly");
         const trans = tx.objectStore("transactions");
         var cursorRequest = trans.openCursor();
-        cursorRequest.onsuccess = (e, transaction_list) =>{
+        cursorRequest.onsuccess = (e) =>{
           const cursor = e.target.result;
           if (cursor) {
             // console.log(cursor.value);
             let t = {session_id:null, date:cursor.value.date,time: cursor.value.time,category: cursor.value.category,amount: cursor.value.amount};
-            transaction_list.append(t);
+            // transaction_list.append(t);
+            console.log(t)
             cursor.continue();
           }
         }
