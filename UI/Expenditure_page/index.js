@@ -17,9 +17,8 @@ request.onsuccess = e =>{
     cursorRequest.onsuccess = e =>{
       const cursor = e.target.result;
       if (cursor) {
-        // console.log(cursor.value);
+        console.log(cursor.value);
         add_data(cursor.value.date, cursor.value.time, cursor.value.category, cursor.value.amount);
-        cursor.continue();
       }
     }
     // alert("success");

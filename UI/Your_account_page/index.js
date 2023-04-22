@@ -1,5 +1,10 @@
 let ForwardingURL = localStorage.getItem("ForwardingURL");
 
+let db = null;
+let j = 1;
+
+const dbName = "Budget_Bucket";
+
 validate = () => {
     console.log("inside validate function");
 
@@ -52,12 +57,35 @@ input.addEventListener('change', () => {
 })
 
 function logout() {
-    axios.put("/logout",{}, {
+
+    const request = indexedDB.open(dbName)
+    request.onsuccess = e =>{
+        db = e.target.result;
+        let transaction_list = []
+        const tx = db.transaction("transactions", "readonly");
+        const trans = tx.objectStore("transactions");
+        var cursorRequest = trans.openCursor();
+        cursorRequest.onsuccess = (e, transaction_list) =>{
+          const cursor = e.target.result;
+          if (cursor) {
+            // console.log(cursor.value);
+            let t = {session_id:null, date:cursor.value.date,time: cursor.value.time,category: cursor.value.category,amount: cursor.value.amount};
+            transaction_list.append(t);
+            cursor.continue();
+          }
+        }
+        // alert("success");
+    }
+    setTimeout(()=>{
+        console.log(transaction_list)
+        let post_obj = {transactions : transaction_list, email:userEmail}
+        axios.put("/logout",post_obj, {
         baseURL: ForwardingURL,
         withCredentials:true
     }).then(res => {
         location.href = "../Login_page/"
-      })
+      })}, 1000)
+
 }
 
 let userEmail = localStorage.getItem("userEmail")
