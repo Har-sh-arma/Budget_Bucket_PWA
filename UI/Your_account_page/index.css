@@ -19,7 +19,7 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-top: 5vh;
+    margin-top: 3vh;
 
 }
 
@@ -38,7 +38,7 @@ body {
 .details {
     text-align: left;
     margin-top: 8vh;
-    height: 62vh;
+    height: 70vh;
     width: 80vw;
     border-radius: 30px;
     background-color: var(--light);
@@ -76,5 +76,19 @@ body {
     box-shadow: 0px 0px 10px 0px var(--dark1);
     font-size: 1.6rem;
     color: whitesmoke;
+    /* margin-left: 18vw; */
+}
+
+#logout {
+    width: 55vw;
+    height: 7vh;
+    border-radius: 20px;
+    background: rgb(1, 21, 24);
+    box-shadow: 0px 0px 10px 0px var(--dark1);
+    font-size: 1.6rem;
+    color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     /* margin-left: 18vw; */
 }
