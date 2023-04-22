@@ -6,10 +6,10 @@ const { authenticateToken } = require('../middleware/jwt');
 
 
 
-budget.get('/:year/:month',authenticateToken,(req,res)=>{
-    const email = req.user;
+budget.get('/:year/:month',(req,res)=>{
+    // const email = req.user;
     const {month,year} = req.params;
-    
+    const {email}= req.body;
     var sql = `SELECT * FROM users WHERE email="${email}"`;
     connectDB.query(sql,(err,result)=>{
         if(err) return res.status(500).send("server error(budget)");
@@ -31,9 +31,9 @@ budget.get('/:year/:month',authenticateToken,(req,res)=>{
 })
 
 
-budget.post('/',authenticateToken,(req,res)=>{
-    const email = req.user;
-    const {month,budget,food_budget,utilities_budget,transport_budget,entertainment_budget,misc_budget,if_session}= req.body;
+budget.post('/',(req,res)=>{
+    // const email = req.user;
+    const {month,budget,food_budget,utilities_budget,transport_budget,entertainment_budget,misc_budget,if_session,email}= req.body;
     var sql = `SELECT * FROM users WHERE email="${email}"`;
     connectDB.query(sql,(err,result)=>{
         if(err) return res.status(500).send("server error(budget)");
@@ -56,9 +56,9 @@ budget.post('/',authenticateToken,(req,res)=>{
 })
 
 
-budget.put('/',authenticateToken,(req,res)=>{
-    const email = req.user;
-    const {month,budget,food_budget,utilities_budget,transport_budget,entertainment_budget,misc_budget,if_session}= req.body;
+budget.put('/',(req,res)=>{
+    // const email = req.user;
+    const {month,budget,food_budget,utilities_budget,transport_budget,entertainment_budget,misc_budget,if_session,email}= req.body;
     var sql = `SELECT * FROM users WHERE email="${email}"`;
     connectDB.query(sql,(err,result)=>{
         if(err) return res.status(500).send("server error(budget)");
@@ -85,9 +85,9 @@ budget.put('/',authenticateToken,(req,res)=>{
 
 });
 
-budget.put('/spendings',authenticateToken,(req,res)=>{
-    const email = req.user;
-    const {month,spent,food_spent,utilities_spent,transport_spent,entertainment_spent,misc_spent}= req.body;
+budget.put('/spendings',(req,res)=>{
+    // const email = req.user;
+    const {month,spent,food_spent,utilities_spent,transport_spent,entertainment_spent,misc_spent,email}= req.body;
     var sql = `SELECT * FROM users WHERE email="${email}"`;
     connectDB.query(sql,(err,result)=>{
         if(err) return res.status(500).send("server error(budget)");
