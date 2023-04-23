@@ -80,7 +80,7 @@ function logout() {
         console.log(transaction_list);
         let post_obj = { transactions: transaction_list, email: userEmail }
         console.log(post_obj);
-        axios.put("/logout", post_obj, {
+        axios.post("/logout", post_obj, {
             baseURL: ForwardingURL,
             withCredentials: true
         }).then(res => {
