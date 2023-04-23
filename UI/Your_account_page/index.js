@@ -75,15 +75,17 @@ function logout() {
             cursor.continue();
           }
         // console.log(transaction_list)
-        let post_obj = {transactions : transaction_list, email:userEmail}
-        console.log(post_obj);
-        axios.put("/logout",post_obj, {
-        baseURL: ForwardingURL,
-        withCredentials:true
-    }).then(res => {
-        // location.href = "../Login_page/"
-      })
+    //     let post_obj = {transactions : transaction_list, email:userEmail}
+    //     console.log(post_obj);
+    //     axios.put("/logout",post_obj, {
+    //     baseURL: ForwardingURL,
+    //     withCredentials:true
+    // }).then(res => {
+    //     // location.href = "../Login_page/"
+    //   })
         }
+        console.log(transaction_list);
+
         // alert("success");
     }
    
