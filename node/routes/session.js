@@ -12,7 +12,7 @@ session.get('/:year/:month',authenticateToken,(req,res)=>{
     async_get_session_trans_for_month(year,month,email,res);
 });
 
-session.put('/',authenticateToken,(req,res)=>{
+session.post('/',authenticateToken,(req,res)=>{
     const email = req.user;
     const {session_array} = req.body;
       async_update_session_details(session_array,email,res);

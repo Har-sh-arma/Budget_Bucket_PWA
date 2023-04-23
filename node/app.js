@@ -47,7 +47,7 @@ start_server= ()=>{
 //        httpsServer.listen(PORT, () => {
   //          console.log("server is listening on 5050...")
     //    });
-         app.listen(PORT,()=>{
+         app.listen(5050,()=>{
              console.log("server is listening on 5050...");
             
          });  

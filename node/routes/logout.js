@@ -5,7 +5,7 @@ const { authenticateToken } = require('../middleware/jwt');
 require('dotenv').config();
 
   
-logout.put('/',(req,res)=>{
+logout.post('/',(req,res)=>{
     // const email = req.user;
     // console.log(email);
     // const email_fetched= new Promise((resolve,reject)=>{

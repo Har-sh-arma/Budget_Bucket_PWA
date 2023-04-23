@@ -5,7 +5,7 @@ const {connectDB}= require('../SQL/database');
 const { get_profile } = require('../actions/profile_functions');
 
 
-profile.put('/',(req,res)=>{
+profile.post('/',(req,res)=>{
     // const email= req.user;
     const {name,DOB,location,profile,email}= req.body;
    var sql = `UPDATE users SET name='${name}' , DOB='${DOB}' , location='${location}' , profile='${profile}' where email='${email}'`
