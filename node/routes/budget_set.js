@@ -56,7 +56,7 @@ budget.post('/',(req,res)=>{
 })
 
 
-budget.put('/',(req,res)=>{
+budget.post('/',(req,res)=>{
     // const email = req.user;
     const {month,budget,food_budget,utilities_budget,transport_budget,entertainment_budget,misc_budget,if_session,email}= req.body;
     var sql = `SELECT * FROM users WHERE email="${email}"`;
@@ -85,7 +85,7 @@ budget.put('/',(req,res)=>{
 
 });
 
-budget.put('/spendings',(req,res)=>{
+budget.post('/spendings',(req,res)=>{
     // const email = req.user;
     const {month,spent,food_spent,utilities_spent,transport_spent,entertainment_spent,misc_spent,email}= req.body;
     var sql = `SELECT * FROM users WHERE email="${email}"`;
