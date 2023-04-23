@@ -7,7 +7,7 @@ require('dotenv').config();
 const {connectDB}= require('./SQL/database');
 var cors = require('cors')
 
-app.use(cors())
+app.use(cors({origin:"https://har-sh-arma.github.io", credentials: true, sameSite:""}))
 app.use(express.json());
 app.use(urlencoded({extended:true}));
 app.use(cookieParser());
