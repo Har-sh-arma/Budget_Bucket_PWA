@@ -7,6 +7,7 @@ const { insert_transactions, async_get_transactions_for_month } = require('../ac
   
 transaction.post('/',(req,res)=>{
     // const email = req.user;
+    console.log(req.body);
     let {transactions,email}= req.body; 
     let dt = new Date(transactions[0].date);let month = dt.getMonth()+1; let year = dt.getFullYear();
     insert_transactions(email,month,year,transactions,res);
