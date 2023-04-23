@@ -61,35 +61,36 @@ var transaction_list = []
 
 function logout() {
     const request = indexedDB.open(dbName)
-    request.onsuccess = (e) =>{
+    request.onsuccess = (e) => {
         db = e.target.result;
         const tx = db.transaction("transactions", "readonly");
         const trans = tx.objectStore("transactions");
         var cursorRequest = trans.openCursor();
-        cursorRequest.onsuccess = (e) =>{
-          const cursor = e.target.result;
-          if (cursor) {
-            let t = {session_id:null, date:cursor.value.date,time: cursor.value.time,category: cursor.value.category,amount: cursor.value.amount};
-            transaction_list.push(t);
+        cursorRequest.onsuccess = (e) => {
+            const cursor = e.target.result;
+            if (cursor) {
+                let t = { session_id: null, date: cursor.value.date, time: cursor.value.time, category: cursor.value.category, amount: cursor.value.amount };
+                transaction_list.push(t);
+                // console.log(transaction_list)
+                cursor.continue();
+            }
             // console.log(transaction_list)
-            cursor.continue();
-          }
-        // console.log(transaction_list)
-    //     let post_obj = {transactions : transaction_list, email:userEmail}
-    //     console.log(post_obj);
-    //     axios.put("/logout",post_obj, {
-    //     baseURL: ForwardingURL,
-    //     withCredentials:true
-    // }).then(res => {
-    //     // location.href = "../Login_page/"
-    //   })
+
         }
         console.log(transaction_list);
+        let post_obj = { transactions: transaction_list, email: userEmail }
+        console.log(post_obj);
+        axios.put("/logout", post_obj, {
+            baseURL: ForwardingURL,
+            withCredentials: true
+        }).then(res => {
+            // location.href = "../Login_page/"
+        })
 
         // alert("success");
     }
-   
-        
+
+
 
 }
 
