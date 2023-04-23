@@ -71,11 +71,12 @@ function logout() {
           if (cursor) {
             let t = {session_id:null, date:cursor.value.date,time: cursor.value.time,category: cursor.value.category,amount: cursor.value.amount};
             transaction_list.push(t);
-            console.log(transaction_list)
+            // console.log(transaction_list)
             cursor.continue();
           }
-        console.log(transaction_list)
+        // console.log(transaction_list)
         let post_obj = {transactions : transaction_list, email:userEmail}
+        console.log(post_obj);
         axios.put("/logout",post_obj, {
         baseURL: ForwardingURL,
         withCredentials:true
