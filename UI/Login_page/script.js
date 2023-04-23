@@ -5,21 +5,7 @@ let el = document.getElementById("sub");
 var user = {};
 ForwardingURL = 'https://376b-49-36-88-246.ngrok-free.app';
 localStorage.setItem("ForwardingURL", ForwardingURL);
-async function postData(url = "", data = {}) {
-  const response = await fetch(url, {
-    method: "POST", 
-    mode: "cors", 
-    cache: "default",
-    credentials: "same-origin", 
-    headers: {
-      "Content-Type": "application/json",
-    },
-    redirect: "follow",
-    referrerPolicy: "no-referrer",
-    body: JSON.stringify(data),
-  });
-  return response.json();
-}
+
 
 
 // https://0487-49-36-90-156.ngrok-free.app

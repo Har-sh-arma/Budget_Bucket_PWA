@@ -110,7 +110,7 @@ function add_amount() {
         let date = new Date();
         let month = date.getMonth();
         month++;
-        let fulldate = date.getDate() + "-" + month + "-" + date.getFullYear();
+        let fulldate = date.getFullYear()+ "-" + month + "-" +date.getDate();
         let fulltime = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
         let amount = document.getElementById("aip");
         transaction = {
