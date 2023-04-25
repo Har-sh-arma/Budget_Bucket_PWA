@@ -3,7 +3,7 @@
 let el = document.getElementById("sub");
 
 var user = {};
-ForwardingURL = 'https://376b-49-36-88-246.ngrok-free.app';
+ForwardingURL = 'https://6ce6-103-217-85-190.ngrok-free.app';
 localStorage.setItem("ForwardingURL", ForwardingURL);
 
 
