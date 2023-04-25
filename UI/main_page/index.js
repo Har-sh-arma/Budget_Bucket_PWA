@@ -1,3 +1,10 @@
+if (localStorage.getItem("logged_in")===null){
+    localStorage.setItem("logged_in", 0);
+    window.location.href = "../Login_page";
+    
+}
+else if(localStorage.getItem("logged_in")==="0"){window.location.href = "../Login_page";}
+
 
 var flag = 0;
 let db = null;

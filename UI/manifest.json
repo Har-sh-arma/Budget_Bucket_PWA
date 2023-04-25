@@ -457,5 +457,5 @@
     "scope": "/",
     "use_cache": true
   },
-  "start_url": "/Budget_Bucket_PWA/UI/Login_page",
+  "start_url": "/Budget_Bucket_PWA/UI/main_page",
   "display": "standalone"}

@@ -84,7 +84,8 @@ function logout() {
             baseURL: ForwardingURL,
             withCredentials: true
         }).then(res => {
-            // location.href = "../Login_page/"
+            localStorage.setItem("logged_in",0)
+            location.href = "../Login_page/"
         })
 
         // alert("success");

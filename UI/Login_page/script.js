@@ -76,8 +76,9 @@ function lgin() {
         withCredentials:true,
         baseURL: ForwardingURL
 }).then(res => {
-    localStorage.setItem("userEmail", user.email)
-    setTimeout(()=>{location.href = "../main_page/"},2000)
+  localStorage.setItem("userEmail", user.email)
+  localStorage.setItem("logged_in", 1)
+    setTimeout(()=>{location.href = "../main_page/"},500)
   }).catch(err => {
     //console.log(err.request.status);
     if (err.request.status === 401) {
@@ -139,6 +140,6 @@ function sgn() {
 
 }
 
-// if ("serviceWorker" in navigator) {
-//   navigator.serviceWorker.register("../../sw.js");
-// }
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("../../sw.js");
+}
