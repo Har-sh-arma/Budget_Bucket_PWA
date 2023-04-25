@@ -15,6 +15,7 @@
 let extra = Number(localStorage.getItem("extra"))
 let lstring = localStorage.getItem("lstring")
 let budget = Number(localStorage.getItem("budget"))
+let ForwardingURL = localStorage.getItem("ForwardingURL");
 
 
 let cat_list = lstring.split(" ");
