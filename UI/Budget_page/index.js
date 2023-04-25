@@ -78,7 +78,7 @@ function edit_budget_amount() {
         let date = new Date();
         let month = date.getMonth();
         month++;
-        localStorage.setItem("userEmail", user.email)
+        // localStorage.setItem("userEmail", user.email)
         let fulldate = date.getFullYear()+ "-" + month + "-" +date.getDate();
         axios.post("/budget_set", {month:fulldate, budget:budget,food_budget:null,utilities_budget:null,transport_budget:null,entertainment_budget:null,misc_budget:null,if_session:null,email:userEmail}, {
             baseURL: ForwardingURL,
